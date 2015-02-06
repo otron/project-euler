@@ -23,6 +23,12 @@ facts("testing fact()") do
     @fact res2[13] => 1
     @fact res2[5] => 1
     @fact res2[7] => 1
-
 end
 
+facts("testing fact_pls()") do
+    res = fact_pls(13195)
+    @fact length(res) => 4
+    @fact res[13] => 1
+    @fact res[5] => 1
+    @fact res[7] => 1
+end

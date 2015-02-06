@@ -19,3 +19,21 @@ function firstfactor(num, start)
     end
     return (num, 1)
 end
+
+# more tail-recursive like variant
+function fact_pls(num)
+    limit = floor(num/2)
+    fact_rec(num, 2, limit, Dict{Int64, Int64}())
+end
+
+function fact_rec(num, start, limit, list)
+    for i = start:limit
+        if num % i == 0
+            list[i] = get!(list, i, 0) + 1
+            return fact_rec(num/i, i, floor((num/i)/2), list)
+        end
+    end
+    list[num] = get!(list, num, 0) + 1
+    return list
+end
+
