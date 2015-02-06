@@ -1,13 +1,13 @@
 function fact(num::Number)
     res = Dict{Int64, Int64}()
-    if num == 0
-        return res
-    else
-        res[2] = 1
-        res
+    # assume num > 2
+    temp_res = firstfactor(num, 2)
+    while temp_res[2] != 1
+        res[temp_res[1]] = get!(res, temp_res[1], 0) + 1
+        temp_res = firstfactor(temp_res[2], 2)
     end
-
-    limit = floor(num/2)
+    res[temp_res[1]] = get!(res, temp_res[1], 0) + 1
+    res
 end
 
 function firstfactor(num, start)

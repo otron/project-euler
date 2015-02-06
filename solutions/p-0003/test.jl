@@ -1,14 +1,6 @@
 using FactCheck
 include("factor.jl")
 
-
-facts("testing fact()") do
-    res = fact(0)
-    @fact typeof(res) => Dict{Int64, Int64}
-    @fact length(res) => 0
-
-end
-
 facts("testing firstfactor()") do
     @fact firstfactor(8, 2) => (2, 4)
 
@@ -20,3 +12,17 @@ facts("testing firstfactor()") do
 
     @fact firstfactor(13, 2) => (13, 1)
 end
+
+facts("testing fact()") do
+    res = fact(15)
+    @fact res[3] => 1
+    @fact res[5] => 1
+
+    res2 = fact(13195)
+    @fact length(res2) => 4
+    @fact res2[13] => 1
+    @fact res2[5] => 1
+    @fact res2[7] => 1
+
+end
+
